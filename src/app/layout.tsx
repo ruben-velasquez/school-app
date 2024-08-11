@@ -13,7 +13,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      { children }
+      <body className="bg-background flex">
+        { children }
+      </body>
     </html>
   );
 }
