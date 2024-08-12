@@ -10,7 +10,7 @@ export default function Sidebar() {
                     School Management
                 </h1>
             </header>
-            <ul className="display flex flex-col gap-2 px-2 justify-center text-gray-400">
+            <ul className="display flex flex-col gap-2 px-2 justify-center">
                 <SidebarButton href="#"><BiHome size={20} /> Home</SidebarButton>
                 <SidebarButton href="#"><BiBook size={20}/> Subjects</SidebarButton>
                 <SidebarButton href="#"><BiNote size={20} /> Notes</SidebarButton>
