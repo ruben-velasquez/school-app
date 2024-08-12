@@ -1,5 +1,6 @@
+import Button from "@/components/button";
 import Sidebar from "@/components/sidebar";
-import { BiLeaf, BiMath, BiMedal, BiSolidCalendarExclamation, BiSolidMegaphone, BiSolidPizza } from "react-icons/bi";
+import { BiLeaf, BiMath, BiMedal, BiSolidCalendarExclamation, BiSolidMegaphone, BiSolidPizza, BiSolidRightArrowAlt, BiTask } from "react-icons/bi";
 
 export default function Home() {
   return (
@@ -11,18 +12,19 @@ export default function Home() {
         </header>
         <div className="w-full flex-grow grid grid-cols-2 grid-rows-3 gap-4">
 
-          <section className="bg-gray-950 rounded-2xl p-4 flex flex-col gap-2 ">
+          <section className="border-container border rounded-2xl p-4 flex flex-col gap-2 ">
             <span className="text-lg text-gray-300">Grade point average:</span>
-            <h3 className="text-4xl font-bold flex gap-2"><BiMedal /> 7.0</h3>
+            <h3 className="text-4xl font-bold flex gap-2 mb-2"><BiMedal /> 7.0</h3>
+            <Button href="#">See all grades <BiSolidRightArrowAlt size={24} /></Button>
           </section>
 
-          <section className="bg-gray-950 rounded-2xl p-4 flex flex-col gap-2 ">
-            <span className="text-lg text-gray-300">Exams this week:</span>
-            <h3 className="text-4xl font-bold flex gap-2"><BiSolidCalendarExclamation /> 3</h3>
-            <span className="text-base text-gray-400">Monday, Wednesday, Thursday</span>
+          <section className="border-container border rounded-2xl p-4 flex flex-col gap-2 ">
+            <span className="text-lg text-gray-300">Pending tasks:</span>
+            <h3 className="text-4xl font-bold flex gap-2 mb-2"><BiTask /> 3</h3>
+            <Button href="#">Go to tasks <BiSolidRightArrowAlt size={24} /></Button>
           </section>
 
-          <section className="col-span-2 row-span-2 rounded-2xl flex flex-col gap-5">
+          <section className="col-span-2 row-span-2 rounded-2xl flex flex-col gap-2">
             <h3 className="text-2xl">Monday 12th</h3>
             <ul className="grid gap-4">
               <li className="flex justify-between items-center">
@@ -47,6 +49,8 @@ export default function Home() {
                 </div>
               </li>
 
+              <hr className="border-container" />
+
               <li className="flex justify-between items-center">
                 <div className="flex gap-2">
                   <div className="p-3 bg-gray-950 rounded-lg">
@@ -69,6 +73,8 @@ export default function Home() {
                 </div>
               </li>
 
+              <hr className="border-container" />
+
               <li className="flex justify-between items-center">
                 <div className="flex gap-2">
                   <div className="p-3 bg-gray-950 rounded-lg">
@@ -90,6 +96,8 @@ export default function Home() {
                   </aside>
                 </div>
               </li>
+
+              <hr className="border-container" />
 
               <li className="flex justify-between items-center">
                 <div className="flex gap-2">
