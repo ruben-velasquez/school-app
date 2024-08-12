@@ -5,8 +5,8 @@ import { RiTwitterXLine } from "react-icons/ri";
 export default function Sidebar() {
     return (
         <aside className="bg-background border-box-border border-r w-1/5 flex flex-col gap-5 py-5">
-            <header className="px-5">
-                <h1 className="font-bold text-xl flex gap-2 tracking-wide">
+            <header className="px-6 pb-3 border-b border-box-border">
+                <h1 className="font-headings text-xl flex gap-2 tracking-wide">
                     <BiBarChartAlt2 />
                     School Management
                 </h1>

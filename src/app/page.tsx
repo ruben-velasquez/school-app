@@ -8,7 +8,7 @@ export default function Home() {
       <Sidebar />
       <main className="bg-background w-4/5 flex flex-col py-5 px-10 gap-5">
         <header className="w-full">
-          <h2 className="text-3xl font-bold tracking-wider">Welcome again!</h2>
+          <h2 className="text-3xl font-headings tracking-wider">Welcome again!</h2>
         </header>
         <div className="w-full flex-grow grid grid-cols-2 grid-rows-3 gap-4">
 
@@ -25,7 +25,7 @@ export default function Home() {
           </section>
 
           <section className="col-span-2 row-span-2 rounded-2xl flex flex-col gap-2">
-            <h3 className="text-2xl">Monday 12th</h3>
+            <h3 className="text-2xl font-headings tracking-wider pb-2">Monday 12th</h3>
             <ul className="grid gap-4">
               <li className="flex justify-between items-center">
                 <div className="flex gap-2">

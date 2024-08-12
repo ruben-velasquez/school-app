@@ -9,6 +9,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Tanker';
+    src: url('../../public/fonts/Tanker-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 *, *::before, *::after{
     box-sizing: border-box; 
 }

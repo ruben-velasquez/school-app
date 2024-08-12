@@ -9,7 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        "main": ["Radio Canada Big", "ui-serif", "Georgia"]
+        "main": ["Radio Canada Big", "ui-serif", "Georgia"],
+        "headings": ["Tanker", "ui-serif", "Georgia"]
       },
       colors: {
         "sidebar": "#161616",
