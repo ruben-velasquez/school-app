@@ -12,10 +12,11 @@ const config: Config = {
         "main": ["Radio Canada Big", "ui-serif", "Georgia"]
       },
       colors: {
-        "sidebar": "#0B0A0B",
+        "sidebar": "#161616",
         "background": "#161616",
         "sidebar-button": "#2D2C2C",
         "container": "#3f3f3f",
+        "box-border": "#3f3f3f",
       },
     },
   },
