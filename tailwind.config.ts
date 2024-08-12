@@ -13,8 +13,9 @@ const config: Config = {
       },
       colors: {
         "sidebar": "#0B0A0B",
-        "background": "#363737",
-        "sidebar-button": "#2D2C2C"
+        "background": "#161616",
+        "sidebar-button": "#2D2C2C",
+        "container": "#3f3f3f",
       },
     },
   },
