@@ -3,9 +3,9 @@ import SidebarButton from "./sidebar-button";
 
 export default function Sidebar() {
     return (
-        <aside className="bg-sidebar w-1/5 flex flex-col gap-5 py-5 font-main">
+        <aside className="bg-sidebar w-1/5 flex flex-col gap-5 py-5">
             <header className="px-5">
-                <h1 className="font-bold text-xl flex gap-2">
+                <h1 className="font-bold text-xl flex gap-2 tracking-wider">
                     <BiBarChartAlt2 />
                     School Management
                 </h1>
