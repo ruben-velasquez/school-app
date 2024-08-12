@@ -12,13 +12,13 @@ export default function Home() {
         </header>
         <div className="w-full flex-grow grid grid-cols-2 grid-rows-3 gap-4">
 
-          <section className="border-container border rounded-2xl p-4 flex flex-col gap-2 ">
+          <section className="border-box-border border rounded-2xl p-4 flex flex-col gap-2 ">
             <span className="text-lg text-gray-300">Grade point average:</span>
             <h3 className="text-4xl font-bold flex gap-2 mb-2"><BiMedal /> 7.0</h3>
             <Button href="#">See all grades <BiSolidRightArrowAlt size={24} /></Button>
           </section>
 
-          <section className="border-container border rounded-2xl p-4 flex flex-col gap-2 ">
+          <section className="border-box-border border rounded-2xl p-4 flex flex-col gap-2 ">
             <span className="text-lg text-gray-300">Pending tasks:</span>
             <h3 className="text-4xl font-bold flex gap-2 mb-2"><BiTask /> 3</h3>
             <Button href="#">Go to tasks <BiSolidRightArrowAlt size={24} /></Button>
@@ -49,7 +49,7 @@ export default function Home() {
                 </div>
               </li>
 
-              <hr className="border-container" />
+              <hr className="border-box-border" />
 
               <li className="flex justify-between items-center">
                 <div className="flex gap-2">
@@ -73,7 +73,7 @@ export default function Home() {
                 </div>
               </li>
 
-              <hr className="border-container" />
+              <hr className="border-box-border" />
 
               <li className="flex justify-between items-center">
                 <div className="flex gap-2">
