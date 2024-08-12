@@ -1,5 +1,6 @@
-import { BiBarChartAlt2, BiBook, BiHome, BiNote } from "react-icons/bi";
+import { BiBarChartAlt2, BiBook, BiHome, BiLogoGithub, BiMoon, BiNote, BiTask } from "react-icons/bi";
 import SidebarButton from "./sidebar-button";
+import { RiTwitterXLine } from "react-icons/ri";
 
 export default function Sidebar() {
     return (
@@ -10,11 +11,31 @@ export default function Sidebar() {
                     School Management
                 </h1>
             </header>
-            <ul className="display flex flex-col gap-2 px-2 justify-center">
+            <ul className="display flex-grow flex flex-col gap-2 px-2 justify-start">
                 <SidebarButton href="#"><BiHome size={20} /> Home</SidebarButton>
                 <SidebarButton href="#"><BiBook size={20}/> Subjects</SidebarButton>
                 <SidebarButton href="#"><BiNote size={20} /> Notes</SidebarButton>
+                <SidebarButton href="#"><BiTask size={20} /> Tasks</SidebarButton>
             </ul>
+            <footer className="flex flex-col gap-2 w-full">
+                <ul className="flex items-center justify-center w-full gap-2">
+                    <li>
+                        <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                            <BiLogoGithub size={24} />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                            <RiTwitterXLine size={24} />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                            <BiMoon size={24} />
+                        </a>
+                    </li>
+                </ul>
+            </footer>
         </aside>
     )
 }
