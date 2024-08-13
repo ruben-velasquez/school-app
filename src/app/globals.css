@@ -66,5 +66,6 @@ input, button, textarea, select{
 body, html{
     height: 100dvh;
     color: white;
-    scroll-behavior: smooth; 
+    scroll-behavior: smooth;
+    color-scheme: dark;
 }
