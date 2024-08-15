@@ -4,6 +4,7 @@ import NoteCard from "@/components/note-card";
 import NoteForm from "@/components/note-form";
 import Sidebar from "@/components/sidebar";
 import { useNotes } from "@/context/notes-context";
+import { closeModal, openModal } from "@/utils/modal";
 import { FormEventHandler, useState } from "react";
 import { BiPlus } from "react-icons/bi";
 
@@ -12,7 +13,6 @@ export default function NotesPage() {
 
   const [selectedNote, setSelectedNote] = useState(0);
   
-
   const AddNoteModal = {
     titleState: useState(""),
     descriptionState: useState("")
@@ -29,22 +29,6 @@ export default function NotesPage() {
     setSelectedNote(noteId)
     editNoteModal.titleState[1](notes[noteId].title);
     editNoteModal.descriptionState[1](notes[noteId].description);
-  }
-  
-  const openModal = (id: string) => {
-    let $modal = document.getElementById(id) as HTMLDialogElement;
-    
-    if(!$modal) return;
-
-    $modal.showModal();
-  }
-
-  const closeModal = () => {
-    let $modal = document.querySelector("dialog[open]") as HTMLDialogElement;
-
-    if(!$modal) return
-
-    $modal.close();
   }
 
   const addNoteHandler: FormEventHandler<HTMLFormElement> = () => {
