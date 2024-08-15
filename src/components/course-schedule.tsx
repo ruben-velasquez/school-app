@@ -2,7 +2,6 @@ import { BiLeaf, BiMath, BiSolidMegaphone, BiSolidPizza } from "react-icons/bi";
 import CourseScheduleCard, { CSCProps } from "./course-schedule-card";
 
 export default function CourseSchedule() {
-
   let cardsInfo: CSCProps[] = [
     {
       Icon: BiMath,
@@ -12,8 +11,8 @@ export default function CourseSchedule() {
       activity: "Writen exam",
       profInfo: {
         name: "Maria",
-        email: "mariaprof@gmail.com"
-      }
+        email: "mariaprof@gmail.com",
+      },
     },
     {
       Icon: BiLeaf,
@@ -23,8 +22,8 @@ export default function CourseSchedule() {
       activity: "No activities",
       profInfo: {
         name: "Alguien",
-        email: "alguien@gmail.com"
-      }
+        email: "alguien@gmail.com",
+      },
     },
     {
       Icon: BiSolidMegaphone,
@@ -34,8 +33,8 @@ export default function CourseSchedule() {
       activity: "Writen exam",
       profInfo: {
         name: "Someone",
-        email: "someone@gmail.com"
-      }
+        email: "someone@gmail.com",
+      },
     },
     {
       Icon: BiSolidPizza,
@@ -45,23 +44,23 @@ export default function CourseSchedule() {
       activity: "Oral exam",
       profInfo: {
         name: "Ana",
-        email: "anaprof@gmail.com"
-      }
+        email: "anaprof@gmail.com",
+      },
     },
-  ]
+  ];
 
   return (
     <ul className="grid gap-4">
-      {
-        cardsInfo.map((cardInfo, index) => (
-          <>
-            <CourseScheduleCard {...cardInfo} key={index}/>
-            {
-              index < (cardsInfo.length - 1) ? <hr className="border-box-border" /> : <></>
-            }
-          </>
-        ))
-      }
+      {cardsInfo.map((cardInfo, index) => (
+        <>
+          <CourseScheduleCard {...cardInfo} key={index} />
+          {index < cardsInfo.length - 1 ? (
+            <hr className="border-box-border" />
+          ) : (
+            <></>
+          )}
+        </>
+      ))}
     </ul>
-  )
+  );
 }

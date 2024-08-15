@@ -23,7 +23,9 @@ export default function CourseScheduleCard({
         </main>
       </div>
 
-      <span className={activity != "No activities" ? "text-white" : "text-gray-400"}>
+      <span
+        className={activity != "No activities" ? "text-white" : "text-gray-400"}
+      >
         {activity}
       </span>
 

@@ -15,9 +15,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className="flex font-main">
-        <NotesProvider>
-          { children }
-        </NotesProvider>
+        <NotesProvider>{children}</NotesProvider>
       </body>
     </html>
   );
