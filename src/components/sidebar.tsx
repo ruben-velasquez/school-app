@@ -20,16 +20,16 @@ export default function Sidebar() {
         </h1>
       </header>
       <ul className="display flex-grow flex flex-col gap-2 px-2 justify-start">
-        <SidebarButton href="#">
+        <SidebarButton href="/">
           <BiHome size={20} /> Home
         </SidebarButton>
-        <SidebarButton href="#">
+        <SidebarButton href="/subjects">
           <BiBook size={20} /> Subjects
         </SidebarButton>
-        <SidebarButton href="#">
+        <SidebarButton href="/notes">
           <BiNote size={20} /> Notes
         </SidebarButton>
-        <SidebarButton href="#">
+        <SidebarButton href="/tasks">
           <BiTask size={20} /> Tasks
         </SidebarButton>
       </ul>
