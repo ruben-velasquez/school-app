@@ -1,10 +1,11 @@
 "use client";
 import Button from "@/components/button";
 import NoteCard from "@/components/note-card";
+import NoteForm from "@/components/note-form";
 import Sidebar from "@/components/sidebar";
 import TextArea from "@/components/text-area";
 import TextInput from "@/components/text-input";
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, MouseEventHandler, useState } from "react";
 import { BiArrowBack, BiNote, BiPlus } from "react-icons/bi";
 
 export default function NotesPage() {
@@ -24,15 +25,33 @@ export default function NotesPage() {
   ]
 
   const [notes, setNotes] = useState(initialNotes);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [selectedNote, setSelectedNote] = useState(0);
   
-  const openAddNoteModal = () => {
-    let $addModal = document.getElementById("add-modal") as HTMLDialogElement;
-    
-    if(!$addModal) return;
 
-    $addModal.showModal();
+  const AddNoteModal = {
+    titleState: useState(""),
+    descriptionState: useState("")
+  }
+  
+  const editNoteModal = {
+    titleState: useState(""),
+    descriptionState: useState("")
+  }
+
+  const openEditModal = (noteId: number) => {
+    openModal("edit-modal");
+
+    setSelectedNote(noteId)
+    editNoteModal.titleState[1](notes[noteId].title);
+    editNoteModal.descriptionState[1](notes[noteId].description);
+  }
+  
+  const openModal = (id: string) => {
+    let $modal = document.getElementById(id) as HTMLDialogElement;
+    
+    if(!$modal) return;
+
+    $modal.showModal();
   }
 
   const closeModal = () => {
@@ -43,16 +62,11 @@ export default function NotesPage() {
     $modal.close();
   }
 
-  const addNoteHandler: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-
+  const addNoteHandler: FormEventHandler<HTMLFormElement> = () => {
     let note = {
-      title: title,
-      description: description
+      title: AddNoteModal.titleState[0],
+      description: AddNoteModal.descriptionState[0]
     }
-
-    setTitle("");
-    setDescription("");
 
     setNotes([...notes, note]);
 
@@ -63,6 +77,23 @@ export default function NotesPage() {
     setNotes(notes.filter((note, index) => index != id));
   }
 
+  const editNoteHandler = () => {
+    let newNote = {
+      title: editNoteModal.titleState[0],
+      description: editNoteModal.descriptionState[0]
+    }
+
+    setNotes(notes.map((note, index) => {
+      if (index == selectedNote) {
+        return newNote
+      }
+
+      return note
+    }));
+
+    closeModal();
+  }
+
   return (
     <>
       <Sidebar />
@@ -70,35 +101,20 @@ export default function NotesPage() {
         <header className="w-full">
           <h2 className="text-3xl font-headings tracking-wider">Notes</h2>
         </header>
-        <Button isButton href="#" onclick={openAddNoteModal}><BiPlus /> Add note</Button>
+        <Button isButton href="#" onclick={() => openModal("add-modal")}><BiPlus /> Add note</Button>
         <div className="grid grid-cols-3 grid-rows-3 flex-grow gap-4">
           {
             notes.map((note, index) => {
               return (
-                <NoteCard title={note.title} description={note.description} key={index} onDelete={() => deleteNoteHandler(index)}/>
+                <NoteCard title={note.title} description={note.description} key={index} onDelete={() => deleteNoteHandler(index)} onEdit={() => openEditModal(index)}/>
               )
             })
           }
         </div>
 
-        <dialog className="border border-box-border bg-background rounded-lg m-auto px-8 py-5 w-[500px] max-w-[90%] h-[90%] shadow-2xl shadow-white/10 open:flex flex-col gap-4" id="add-modal">
-          <h2 className="text-3xl font-headings tracking-wider">Add note</h2>
-          <form onSubmit={addNoteHandler} className="flex flex-col flex-grow justify-between">
-            <main className="flex flex-col gap-2">
-              <p className="text-gray-300">Title*</p>
-              <TextInput name="title" placeholder="My new note" required value={title}
-        onChange={e => setTitle(e.target.value)} />
-              <p className="text-gray-300">Description*</p>
-              <TextArea name="description" placeholder="The description of my new note." required value={description}
-        onChange={e => setDescription(e.target.value)} />
-            </main>
+        <NoteForm action="Add" onSubmit={addNoteHandler} closeModal={closeModal} id="add-modal" titleState={AddNoteModal.titleState} descriptionState={AddNoteModal.descriptionState}/>
 
-            <footer className="flex items-center justify-end gap-2">
-              <Button isButton onclick={closeModal}><BiArrowBack /> Cancel</Button>
-              <Button isButton><BiNote /> Add note</Button>
-            </footer>
-          </form>
-        </dialog>
+        <NoteForm action="Edit" onSubmit={editNoteHandler} closeModal={closeModal} id="edit-modal" titleState={editNoteModal.titleState} descriptionState={editNoteModal.descriptionState}/>
       </main>
     </>
   )
