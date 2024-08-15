@@ -69,3 +69,8 @@ body, html{
     scroll-behavior: smooth;
     color-scheme: dark;
 }
+
+::backdrop {
+    background: black;
+    opacity: 0.5;
+}
