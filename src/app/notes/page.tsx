@@ -3,28 +3,13 @@ import Button from "@/components/button";
 import NoteCard from "@/components/note-card";
 import NoteForm from "@/components/note-form";
 import Sidebar from "@/components/sidebar";
-import TextArea from "@/components/text-area";
-import TextInput from "@/components/text-input";
-import { FormEventHandler, MouseEventHandler, useState } from "react";
-import { BiArrowBack, BiNote, BiPlus } from "react-icons/bi";
+import { useNotes } from "@/context/notes-context";
+import { FormEventHandler, useState } from "react";
+import { BiPlus } from "react-icons/bi";
 
 export default function NotesPage() {
-  let initialNotes = [
-    {
-      title: "My note title",
-      description: "My note description."
-    },
-    {
-      title: "My note title",
-      description: "My note description."
-    },
-    {
-      title: "My note title",
-      description: "My note description."
-    },
-  ]
+  const {notes, createNote, updateNote, deleteNote} = useNotes();
 
-  const [notes, setNotes] = useState(initialNotes);
   const [selectedNote, setSelectedNote] = useState(0);
   
 
@@ -63,33 +48,27 @@ export default function NotesPage() {
   }
 
   const addNoteHandler: FormEventHandler<HTMLFormElement> = () => {
-    let note = {
+    let newNote = {
       title: AddNoteModal.titleState[0],
       description: AddNoteModal.descriptionState[0]
     }
 
-    setNotes([...notes, note]);
+    createNote(newNote);
 
     closeModal();
   }
 
   const deleteNoteHandler = (id: number) => {
-    setNotes(notes.filter((note, index) => index != id));
+    deleteNote(id);
   }
 
   const editNoteHandler = () => {
-    let newNote = {
+    let updatedNote = {
       title: editNoteModal.titleState[0],
       description: editNoteModal.descriptionState[0]
     }
 
-    setNotes(notes.map((note, index) => {
-      if (index == selectedNote) {
-        return newNote
-      }
-
-      return note
-    }));
+    updateNote(selectedNote, updatedNote);
 
     closeModal();
   }

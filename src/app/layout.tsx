@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { NotesProvider } from "@/context/notes-context";
 
 export const metadata: Metadata = {
   title: "School Management",
@@ -14,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className="flex font-main">
-        { children }
+        <NotesProvider>
+          { children }
+        </NotesProvider>
       </body>
     </html>
   );
