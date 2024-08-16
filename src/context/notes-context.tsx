@@ -3,6 +3,7 @@
     https://github.com/fazt/nextjs-context-crud/blob/master/src/context/TasksContext.js
 */
 "use client";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const NotesContext = createContext({} as NotesContextValue);
@@ -14,7 +15,10 @@ export const useNotes = () => {
 };
 
 export const NotesProvider = ({ children }: { children: React.ReactNode }) => {
-  const [notes, setNotes] = useState([] as Note[]);
+  const [notes, setNotes, removeState, isLoading] = useLocalStorage(
+    "notes",
+    [] as Note[],
+  );
 
   const createNote = (newNote: Note) => {
     let note = {
@@ -26,7 +30,8 @@ export const NotesProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const deleteNote = (id: number) => {
-    setNotes(notes.filter((note, index) => index != id));
+    if (notes.length == 1) removeState();
+    setNotes([...notes.filter((note, index) => index != id)]);
   };
 
   const updateNote = (id: number, newValues: Note) => {
@@ -42,7 +47,7 @@ export const NotesProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <NotesContext.Provider
-      value={{ notes, createNote, updateNote, deleteNote }}
+      value={{ notes, createNote, updateNote, deleteNote, isLoading }}
     >
       {children}
     </NotesContext.Provider>
@@ -59,4 +64,5 @@ type NotesContextValue = {
   createNote: (newNote: Note) => void;
   updateNote: (id: number, newValues: Note) => void;
   deleteNote: (id: number) => void;
+  isLoading: boolean;
 };

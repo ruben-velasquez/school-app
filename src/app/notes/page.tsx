@@ -1,15 +1,17 @@
 "use client";
+import React from "react";
 import Button from "@/components/button";
 import NoteCard from "@/components/note-card";
 import NoteForm from "@/components/note-form";
 import Sidebar from "@/components/sidebar";
 import { useNotes } from "@/context/notes-context";
 import { closeModal, openModal } from "@/utils/modal";
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, Suspense, useState } from "react";
 import { BiPlus } from "react-icons/bi";
+import NotesSkeleton from "@/components/notes-skeleton";
 
 export default function NotesPage() {
-  const { notes, createNote, updateNote, deleteNote } = useNotes();
+  const { notes, createNote, updateNote, deleteNote, isLoading } = useNotes();
 
   const [selectedNote, setSelectedNote] = useState(0);
 
@@ -68,6 +70,7 @@ export default function NotesPage() {
           <BiPlus /> Add note
         </Button>
         <div className="grid grid-cols-3 grid-rows-3 flex-grow gap-4">
+          {isLoading ? <NotesSkeleton /> : ""}
           {notes.map((note, index) => {
             return (
               <NoteCard
@@ -80,7 +83,6 @@ export default function NotesPage() {
             );
           })}
         </div>
-
         <NoteForm
           action="Add"
           onSubmit={addNoteHandler}
