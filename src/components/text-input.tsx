@@ -6,6 +6,7 @@ export default function TextInput({
   required,
   value,
   onChange,
+  className,
 }: TextInputProps) {
   return (
     <input
@@ -15,7 +16,7 @@ export default function TextInput({
       value={value}
       onChange={onChange}
       type="text"
-      className="p-2 w-full rounded-lg border border-box-border focus:border-white"
+      className={`p-2 w-full rounded-lg border border-box-border focus:border-white ${className}`}
     />
   );
 }
@@ -26,4 +27,5 @@ type TextInputProps = {
   required?: boolean;
   value?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
+  className?: string;
 };
