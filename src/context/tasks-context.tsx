@@ -29,6 +29,12 @@ export const TasksProvider = ({ children }: { children: React.ReactNode }) => {
     setTasks(newTasks);
   };
 
+  const toggleTask = (index: number) => {
+    const newTasks = [...tasks];
+    newTasks[index].completed = !newTasks[index].completed;
+    setTasks(newTasks);
+  };
+
   return (
     <TasksContext.Provider
       value={{
@@ -36,6 +42,7 @@ export const TasksProvider = ({ children }: { children: React.ReactNode }) => {
         addTask,
         deleteTask,
         updateTask,
+        toggleTask
       }}
     >
       {children}
@@ -60,4 +67,5 @@ type TaskProviderValue = {
   addTask: (newTask: Task) => void;
   deleteTask: (index: number) => void;
   updateTask: (index: number, newTask: TaskEdit) => void;
+  toggleTask: (index: number) => void;
 };

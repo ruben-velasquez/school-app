@@ -2,11 +2,11 @@ import { BiPencil, BiTrash } from "react-icons/bi";
 import IconButton from "./icon-button";
 import { Task } from "@/context/tasks-context";
 
-export default function TaskCard({ task, onDelete, onEdit }: TaskCardProps) {
+export default function TaskCard({ task, onDelete, onEdit, onToggle }: TaskCardProps) {
   return (
     <li className="border-b border-box-border p-3 grid grid-cols-8 gap-4 items-center *:text-sm group">
       <div className="flex items-center gap-2 col-span-3">
-        <input type="checkbox" name="completed" className="size-4 min-w-4" />
+        <input type="checkbox" name="completed" checked={task.completed} onChange={onToggle} className="size-4 min-w-4" />
         <span>{task.name}</span>
       </div>
       <span className="text-gray-400 col-span-2 block">
@@ -31,4 +31,5 @@ type TaskCardProps = {
   task: Task;
   onDelete: () => void;
   onEdit: () => void;
+  onToggle: () => void;
 };

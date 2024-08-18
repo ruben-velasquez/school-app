@@ -5,7 +5,7 @@ import { useState } from "react";
 import { closeModal, openModal } from "@/utils/modal";
 
 export default function Tasks() {
-  const { tasks, deleteTask, updateTask } = useTasks();
+  const { tasks, deleteTask, updateTask, toggleTask } = useTasks();
 
   const [selectedTask, setSelectedTask] = useState(0);
 
@@ -33,6 +33,10 @@ export default function Tasks() {
     closeModal();
   };
 
+  const toggleTaskHandler = (taskId: number) => {
+    toggleTask(taskId);
+  };
+
   return (
     <section>
       <header className="grid grid-cols-8 bg-[#121212] px-4 rounded-t-xl gap-4 *:py-2 sticky -top-5">
@@ -53,6 +57,7 @@ export default function Tasks() {
             key={index}
             onDelete={() => deleteTask(index)}
             onEdit={() => openEditModal(index)}
+            onToggle={() => toggleTaskHandler(index)}
           />
         ))}
       </ul>
