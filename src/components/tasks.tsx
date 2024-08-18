@@ -35,7 +35,7 @@ export default function Tasks() {
 
   return (
     <section>
-      <header className="grid grid-cols-8 bg-[#121212] px-4 rounded-t-xl gap-4 *:py-2">
+      <header className="grid grid-cols-8 bg-[#121212] px-4 rounded-t-xl gap-4 *:py-2 sticky -top-5">
         <div className="col-span-3 border-r border-box-border">
           <span>Name</span>
         </div>
