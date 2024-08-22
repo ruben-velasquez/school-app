@@ -15,17 +15,12 @@ export default function TaskForm({
   action,
   onSubmit,
   closeModal,
-  id,
-  nameState: titleState,
-  priorityState: descriptionState,
+  id
 }: TaskFormProps) {
   const formSubmitHandler: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
     onSubmit(e);
-
-    titleState[1]("");
-    descriptionState[1]("");
   };
 
   return (
@@ -41,16 +36,13 @@ export default function TaskForm({
         <main className="flex flex-col gap-2">
           <p className="text-gray-300">Name*</p>
           <TextInput
-            name="title"
+            name="task-name"
             placeholder="My new Task"
             required
-            value={titleState[0]}
-            onChange={(e) => titleState[1](e.target.value)}
           />
           <p className="text-gray-300">Priority*</p>
           <Selector
-            value={descriptionState[0]}
-            onChange={(e) => descriptionState[1](e.target.value)}
+            value={"Normal"}
           />
         </main>
 
@@ -68,8 +60,6 @@ export default function TaskForm({
 }
 
 type TaskFormProps = {
-  nameState: [string, Dispatch<SetStateAction<string>>];
-  priorityState: [string, Dispatch<SetStateAction<string>>];
   action: "Add" | "Edit";
   onSubmit: FormEventHandler<HTMLFormElement>;
   closeModal: MouseEventHandler;

@@ -13,7 +13,7 @@ export default function TextInput({
       name={name}
       placeholder={placeholder}
       required={required}
-      value={value}
+      defaultValue={value}
       onChange={onChange}
       type="text"
       className={`p-2 w-full rounded-lg border border-box-border focus:border-white ${className}`}

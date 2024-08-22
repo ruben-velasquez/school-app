@@ -4,24 +4,27 @@ import Selector from "@/components/selector";
 import Sidebar from "@/components/sidebar";
 import TextInput from "@/components/text-input";
 import { BiPlus } from "react-icons/bi";
-import { useTasks } from "@/context/tasks-context";
 import Tasks from "@/components/tasks";
 import { FormEventHandler } from "react";
+import { useAppDispatch } from "@/redux/hooks";
+import { addTask } from "@/redux/features/tasksSlice";
 
 export default function TasksPage() {
-  const { addTask } = useTasks();
+  const dispatch = useAppDispatch();
 
   const addTaskHandler: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
 
-    addTask({
-      name: formData.get("task-name") as string,
-      createdAt: new Date(),
-      priority: formData.get("task-priority") as string,
-      completed: false,
-    });
+    dispatch(
+      addTask({
+        name: formData.get("task-name") as string,
+        createdAt: new Date().toString(),
+        priority: formData.get("task-priority") as string,
+        completed: false,
+      })
+    )
   };
 
   return (

@@ -52,7 +52,7 @@ export const TasksProvider = ({ children }: { children: React.ReactNode }) => {
 
 export type Task = {
   name: string;
-  createdAt: Date;
+  createdAt: string;
   priority: string;
   completed: boolean;
 };

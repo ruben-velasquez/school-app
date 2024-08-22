@@ -1,41 +1,46 @@
-import { TaskEdit, useTasks } from "@/context/tasks-context";
+import { Task } from "@/context/tasks-context";
 import TaskCard from "./task-card";
 import TaskForm from "./tasks-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { closeModal, openModal } from "@/utils/modal";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { localStorageForRedux } from "@/hooks/useLocalStorage";
+import {
+  setTasks,
+  editTask,
+  toggleTask,
+  removeTask,
+} from "@/redux/features/tasksSlice";
+import { fillEditTaskForm, getEditTask } from "@/utils/tasks-actions";
 
 export default function Tasks() {
-  const { tasks, deleteTask, updateTask, toggleTask } = useTasks();
+  const tasks = useAppSelector((state) => state.tasks.value);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const tasks = localStorageForRedux("tasks", [] as Task[]);
+    dispatch(setTasks(tasks));
+  }, [dispatch]);
 
   const [selectedTask, setSelectedTask] = useState(0);
-
-  const editTaskModal = {
-    nameState: useState(""),
-    priorityState: useState(""),
-  };
 
   const openEditModal = (taskId: number) => {
     openModal("edit-modal");
 
     setSelectedTask(taskId);
-    editTaskModal.nameState[1](tasks[taskId].name);
-    editTaskModal.priorityState[1](tasks[taskId].priority);
+
+    fillEditTaskForm(tasks[taskId]);
   };
 
   const editTaskHandler = () => {
-    const task: TaskEdit = {
-      name: editTaskModal.nameState[0],
-      priority: editTaskModal.priorityState[0],
-    };
+    const task = getEditTask(selectedTask, tasks);
 
-    updateTask(selectedTask, task);
+    dispatch(editTask({ index: selectedTask, updatedTask: task }));
 
     closeModal();
   };
 
-  const toggleTaskHandler = (taskId: number) => {
-    toggleTask(taskId);
-  };
+  const toggleTaskHandler = (taskId: number) => dispatch(toggleTask(taskId));
 
   return (
     <section>
@@ -55,7 +60,7 @@ export default function Tasks() {
           <TaskCard
             task={task}
             key={index}
-            onDelete={() => deleteTask(index)}
+            onDelete={() => dispatch(removeTask(index))}
             onEdit={() => openEditModal(index)}
             onToggle={() => toggleTaskHandler(index)}
           />
@@ -64,8 +69,6 @@ export default function Tasks() {
       <TaskForm
         id="edit-modal"
         action="Edit"
-        nameState={editTaskModal.nameState}
-        priorityState={editTaskModal.priorityState}
         onSubmit={editTaskHandler}
         closeModal={closeModal}
       />
