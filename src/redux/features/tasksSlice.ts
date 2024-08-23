@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type Task = {
+export type Task = {
     name: string;
     createdAt: string;
     priority: string;

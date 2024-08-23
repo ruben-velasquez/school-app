@@ -15,16 +15,11 @@ export default function NoteForm({
   onSubmit,
   closeModal,
   id,
-  titleState,
-  descriptionState,
 }: NoteFormProps) {
   const formSubmitHandler: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
     onSubmit(e);
-
-    titleState[1]("");
-    descriptionState[1]("");
   };
 
   return (
@@ -40,19 +35,15 @@ export default function NoteForm({
         <main className="flex flex-col gap-2">
           <p className="text-gray-300">Title*</p>
           <TextInput
-            name="title"
+            name="note-title"
             placeholder="My new note"
             required
-            value={titleState[0]}
-            onChange={(e) => titleState[1](e.target.value)}
           />
           <p className="text-gray-300">Description*</p>
           <TextArea
-            name="description"
+            name="note-description"
             placeholder="The description of my new note."
             required
-            value={descriptionState[0]}
-            onChange={(e) => descriptionState[1](e.target.value)}
           />
         </main>
 
@@ -70,8 +61,6 @@ export default function NoteForm({
 }
 
 type NoteFormProps = {
-  titleState: [string, Dispatch<SetStateAction<string>>];
-  descriptionState: [string, Dispatch<SetStateAction<string>>];
   action: "Add" | "Edit";
   onSubmit: FormEventHandler<HTMLFormElement>;
   closeModal: MouseEventHandler;

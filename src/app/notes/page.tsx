@@ -1,45 +1,51 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "@/components/button";
 import NoteCard from "@/components/note-card";
 import NoteForm from "@/components/note-form";
 import Sidebar from "@/components/sidebar";
-import { useNotes } from "@/context/notes-context";
 import { closeModal, openModal } from "@/utils/modal";
 import { FormEventHandler, Suspense, useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import NotesSkeleton from "@/components/notes-skeleton";
+import { clearAddNotesForm, fillEditNoteForm, getAddNotes, getEditNotes } from "@/utils/notes-actions";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { createNote, deleteNote, Note, setNotes, updateNote } from "@/redux/features/notesSlice";
+import { localStorageForRedux } from "@/hooks/useLocalStorage";
 
 export default function NotesPage() {
-  const { notes, createNote, updateNote, deleteNote, isLoading } = useNotes();
+  const dispatch = useAppDispatch();
+  const notes = useAppSelector((state) => state.notes.value);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const _notes = localStorageForRedux("notes", [] as Note[]);
+    dispatch(setNotes(_notes));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (notes.length > 0) {
+      setIsLoading(false);
+    }
+  }, [notes]);
 
   const [selectedNote, setSelectedNote] = useState(0);
-
-  const AddNoteModal = {
-    titleState: useState(""),
-    descriptionState: useState(""),
-  };
-
-  const editNoteModal = {
-    titleState: useState(""),
-    descriptionState: useState(""),
-  };
 
   const openEditModal = (noteId: number) => {
     openModal("edit-modal");
 
     setSelectedNote(noteId);
-    editNoteModal.titleState[1](notes[noteId].title);
-    editNoteModal.descriptionState[1](notes[noteId].description);
+    
+    fillEditNoteForm(notes[noteId]);
   };
 
   const addNoteHandler: FormEventHandler<HTMLFormElement> = () => {
-    let newNote = {
-      title: AddNoteModal.titleState[0],
-      description: AddNoteModal.descriptionState[0],
-    };
+    const newNote = getAddNotes();
 
     createNote(newNote);
+
+    clearAddNotesForm();
 
     closeModal();
   };
@@ -49,12 +55,11 @@ export default function NotesPage() {
   };
 
   const editNoteHandler = () => {
-    let updatedNote = {
-      title: editNoteModal.titleState[0],
-      description: editNoteModal.descriptionState[0],
-    };
+    const updatedNote = getEditNotes(selectedNote, notes);
 
-    updateNote(selectedNote, updatedNote);
+    dispatch(
+      updateNote({ index: selectedNote, updatedNote})
+    );
 
     closeModal();
   };
@@ -88,8 +93,6 @@ export default function NotesPage() {
           onSubmit={addNoteHandler}
           closeModal={closeModal}
           id="add-modal"
-          titleState={AddNoteModal.titleState}
-          descriptionState={AddNoteModal.descriptionState}
         />
 
         <NoteForm
@@ -97,8 +100,6 @@ export default function NotesPage() {
           onSubmit={editNoteHandler}
           closeModal={closeModal}
           id="edit-modal"
-          titleState={editNoteModal.titleState}
-          descriptionState={editNoteModal.descriptionState}
         />
       </main>
     </>

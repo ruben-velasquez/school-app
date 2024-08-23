@@ -3,8 +3,13 @@ import { RootState } from "../store";
 // convert object to string and store in localStorage
 function saveToLocalStorage(state: RootState) {
   try {
-    const serialisedState = JSON.stringify(state.tasks.value);
-    localStorage.setItem("tasks", serialisedState);
+    // Tasks
+    const serialisedTasks = JSON.stringify(state.tasks.value);
+    localStorage.setItem("tasks", serialisedTasks);
+
+    // Notes
+    const serialisedNotes = JSON.stringify(state.notes.value);
+    localStorage.setItem("notes", serialisedNotes);
   } catch (e) {
     console.warn(e);
   }
