@@ -4,12 +4,16 @@ import { RootState } from "../store";
 function saveToLocalStorage(state: RootState) {
   try {
     // Tasks
-    const serialisedTasks = JSON.stringify(state.tasks.value);
-    localStorage.setItem("tasks", serialisedTasks);
+    if(state.tasks.value.length > 0) {
+      const serialisedTasks = JSON.stringify(state.tasks.value);
+      localStorage.setItem("tasks", serialisedTasks);
+    }
 
     // Notes
-    const serialisedNotes = JSON.stringify(state.notes.value);
-    localStorage.setItem("notes", serialisedNotes);
+    if(state.notes.value.length > 0) {
+      const serialisedNotes = JSON.stringify(state.notes.value);
+      localStorage.setItem("notes", serialisedNotes);
+    }
   } catch (e) {
     console.warn(e);
   }
