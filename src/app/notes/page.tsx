@@ -22,13 +22,8 @@ export default function NotesPage() {
   useEffect(() => {
     const _notes = localStorageForRedux("notes", [] as Note[]);
     dispatch(setNotes(_notes));
+    setIsLoading(false);
   }, [dispatch]);
-
-  useEffect(() => {
-    if (notes.length > 0) {
-      setIsLoading(false);
-    }
-  }, [notes]);
 
   const [selectedNote, setSelectedNote] = useState(0);
 
@@ -43,7 +38,7 @@ export default function NotesPage() {
   const addNoteHandler: FormEventHandler<HTMLFormElement> = () => {
     const newNote = getAddNotes();
 
-    createNote(newNote);
+    dispatch(createNote(newNote));
 
     clearAddNotesForm();
 
@@ -51,7 +46,7 @@ export default function NotesPage() {
   };
 
   const deleteNoteHandler = (id: number) => {
-    deleteNote(id);
+    dispatch(deleteNote(id));
   };
 
   const editNoteHandler = () => {
