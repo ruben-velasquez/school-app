@@ -18,8 +18,8 @@ export default function Tasks() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const tasks = localStorageForRedux("tasks", [] as Task[]);
-    dispatch(setTasks(tasks));
+    const _tasks = localStorageForRedux("tasks", [] as Task[]);
+    dispatch(setTasks(_tasks));
   }, [dispatch]);
 
   const [selectedTask, setSelectedTask] = useState(0);
