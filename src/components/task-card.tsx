@@ -1,6 +1,6 @@
 import { BiPencil, BiTrash } from "react-icons/bi";
 import IconButton from "./icon-button";
-import { Task } from "@/context/tasks-context";
+import { Task } from "@/redux/features/tasksSlice";
 
 export default function TaskCard({ task, onDelete, onEdit, onToggle }: TaskCardProps) {
   return (

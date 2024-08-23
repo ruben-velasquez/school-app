@@ -50,7 +50,7 @@ export const TasksProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export type Task = {
+type Task = {
   name: string;
   createdAt: string;
   priority: string;

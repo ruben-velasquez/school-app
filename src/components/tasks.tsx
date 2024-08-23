@@ -1,4 +1,3 @@
-import { Task } from "@/context/tasks-context";
 import TaskCard from "./task-card";
 import TaskForm from "./tasks-form";
 import { useEffect, useState } from "react";
@@ -10,6 +9,7 @@ import {
   editTask,
   toggleTask,
   removeTask,
+  Task,
 } from "@/redux/features/tasksSlice";
 import { fillEditTaskForm, getEditTask } from "@/utils/tasks-actions";
 
