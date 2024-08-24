@@ -42,7 +42,7 @@ export const TasksProvider = ({ children }: { children: React.ReactNode }) => {
         addTask,
         deleteTask,
         updateTask,
-        toggleTask
+        toggleTask,
       }}
     >
       {children}

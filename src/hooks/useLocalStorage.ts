@@ -13,10 +13,10 @@ import {
 
 export function localStorageForRedux<T>(key: string, initialState: T) {
   const data = localStorage.getItem(key);
-    
-  if(data) return JSON.parse(data) as T
-    
-  return initialState
+
+  if (data) return JSON.parse(data) as T;
+
+  return initialState;
 }
 
 export function useLocalStorage<S>(

@@ -8,9 +8,20 @@ import { closeModal, openModal } from "@/utils/modal";
 import { FormEventHandler, Suspense, useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import NotesSkeleton from "@/components/notes-skeleton";
-import { clearAddNotesForm, fillEditNoteForm, getAddNotes, getEditNotes } from "@/utils/notes-actions";
+import {
+  clearAddNotesForm,
+  fillEditNoteForm,
+  getAddNotes,
+  getEditNotes,
+} from "@/utils/notes-actions";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { createNote, deleteNote, Note, setNotes, updateNote } from "@/redux/features/notesSlice";
+import {
+  createNote,
+  deleteNote,
+  Note,
+  setNotes,
+  updateNote,
+} from "@/redux/features/notesSlice";
 import { localStorageForRedux } from "@/hooks/useLocalStorage";
 
 export default function NotesPage() {
@@ -31,7 +42,7 @@ export default function NotesPage() {
     openModal("edit-modal");
 
     setSelectedNote(noteId);
-    
+
     fillEditNoteForm(notes[noteId]);
   };
 
@@ -52,9 +63,7 @@ export default function NotesPage() {
   const editNoteHandler = () => {
     const updatedNote = getEditNotes(selectedNote, notes);
 
-    dispatch(
-      updateNote({ index: selectedNote, updatedNote})
-    );
+    dispatch(updateNote({ index: selectedNote, updatedNote }));
 
     closeModal();
   };

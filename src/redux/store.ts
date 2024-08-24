@@ -6,9 +6,9 @@ import { storeChangesSubscription } from "./listeners/localStorage";
 export const store = configureStore({
   reducer: {
     tasks: tasksReducer,
-    notes: notesReducer
+    notes: notesReducer,
   },
-  devTools: process.env.NODE_ENV !== "production"
+  devTools: process.env.NODE_ENV !== "production",
 });
 
 store.subscribe(() => storeChangesSubscription(store.getState()));

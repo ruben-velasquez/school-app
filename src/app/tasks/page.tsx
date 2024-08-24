@@ -23,8 +23,8 @@ export default function TasksPage() {
         createdAt: new Date().toString(),
         priority: formData.get("task-priority") as string,
         completed: false,
-      })
-    )
+      }),
+    );
   };
 
   return (

@@ -15,7 +15,7 @@ export default function TaskForm({
   action,
   onSubmit,
   closeModal,
-  id
+  id,
 }: TaskFormProps) {
   const formSubmitHandler: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -35,15 +35,9 @@ export default function TaskForm({
       >
         <main className="flex flex-col gap-2">
           <p className="text-gray-300">Name*</p>
-          <TextInput
-            name="task-name"
-            placeholder="My new Task"
-            required
-          />
+          <TextInput name="task-name" placeholder="My new Task" required />
           <p className="text-gray-300">Priority*</p>
-          <Selector
-            value={"Normal"}
-          />
+          <Selector value={"Normal"} />
         </main>
 
         <footer className="flex items-center justify-end gap-2">

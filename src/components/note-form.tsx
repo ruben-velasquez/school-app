@@ -34,11 +34,7 @@ export default function NoteForm({
       >
         <main className="flex flex-col gap-2">
           <p className="text-gray-300">Title*</p>
-          <TextInput
-            name="note-title"
-            placeholder="My new note"
-            required
-          />
+          <TextInput name="note-title" placeholder="My new note" required />
           <p className="text-gray-300">Description*</p>
           <TextArea
             name="note-description"
