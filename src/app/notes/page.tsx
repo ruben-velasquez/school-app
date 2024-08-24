@@ -22,7 +22,7 @@ import {
   setNotes,
   updateNote,
 } from "@/redux/features/notesSlice";
-import { localStorageForRedux } from "@/hooks/useLocalStorage";
+import { getlocalStorageItem } from "@/hooks/useLocalStorage";
 
 export default function NotesPage() {
   const dispatch = useAppDispatch();
@@ -31,7 +31,7 @@ export default function NotesPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const _notes = localStorageForRedux("notes", [] as Note[]);
+    const _notes = getlocalStorageItem("notes", [] as Note[]);
     dispatch(setNotes(_notes));
     setIsLoading(false);
   }, [dispatch]);

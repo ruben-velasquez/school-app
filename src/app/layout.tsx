@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { NotesProvider } from "@/context/notes-context";
-import { TasksProvider } from "@/context/tasks-context";
 import { Providers } from "@/redux/provider";
 
 export const metadata: Metadata = {
@@ -17,9 +15,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className="flex font-main">
-        <NotesProvider>
-          <Providers>{children}</Providers>
-        </NotesProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

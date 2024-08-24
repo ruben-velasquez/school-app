@@ -3,7 +3,7 @@ import TaskForm from "./tasks-form";
 import { useEffect, useState } from "react";
 import { closeModal, openModal } from "@/utils/modal";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import { localStorageForRedux } from "@/hooks/useLocalStorage";
+import { getlocalStorageItem } from "@/hooks/useLocalStorage";
 import {
   setTasks,
   editTask,
@@ -18,7 +18,7 @@ export default function Tasks() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const _tasks = localStorageForRedux("tasks", [] as Task[]);
+    const _tasks = getlocalStorageItem("tasks", [] as Task[]);
     dispatch(setTasks(_tasks));
   }, [dispatch]);
 
