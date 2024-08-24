@@ -2,8 +2,6 @@ import { RootState } from "../store";
 
 // convert object to string and store in localStorage
 function saveToLocalStorage(state: RootState) {
-  console.log("Saving to localStorage");
-
   try {
     if (!state.loading.value) {
       // Tasks
