@@ -2,15 +2,15 @@ import { RootState } from "../store";
 
 // convert object to string and store in localStorage
 function saveToLocalStorage(state: RootState) {
+  console.log("Saving to localStorage");
+
   try {
-    // Tasks
-    if (state.tasks.value.length > 0) {
+    if (!state.loading.value) {
+      // Tasks
       const serialisedTasks = JSON.stringify(state.tasks.value);
       localStorage.setItem("tasks", serialisedTasks);
-    }
-
-    // Notes
-    if (state.notes.value.length > 0) {
+      
+      // Notes
       const serialisedNotes = JSON.stringify(state.notes.value);
       localStorage.setItem("notes", serialisedNotes);
     }

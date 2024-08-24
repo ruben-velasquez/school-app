@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Button from "@/components/button";
 import NoteCard from "@/components/note-card";
 import NoteForm from "@/components/note-form";
 import Sidebar from "@/components/sidebar";
 import { closeModal, openModal } from "@/utils/modal";
-import { FormEventHandler, Suspense, useState } from "react";
+import { FormEventHandler, useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import NotesSkeleton from "@/components/notes-skeleton";
 import {
@@ -18,23 +18,14 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   createNote,
   deleteNote,
-  Note,
-  setNotes,
   updateNote,
 } from "@/redux/features/notesSlice";
-import { getlocalStorageItem } from "@/hooks/useLocalStorage";
+import { useLoading } from "@/hooks/useLoading";
 
 export default function NotesPage() {
   const dispatch = useAppDispatch();
   const notes = useAppSelector((state) => state.notes.value);
-
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const _notes = getlocalStorageItem("notes", [] as Note[]);
-    dispatch(setNotes(_notes));
-    setIsLoading(false);
-  }, [dispatch]);
+  const loading = useLoading();
 
   const [selectedNote, setSelectedNote] = useState(0);
 
@@ -79,7 +70,7 @@ export default function NotesPage() {
           <BiPlus /> Add note
         </Button>
         <div className="grid grid-cols-3 grid-rows-3 flex-grow gap-4">
-          {isLoading ? <NotesSkeleton /> : ""}
+          {loading ? <NotesSkeleton /> : ""}
           {notes.map((note, index) => {
             return (
               <NoteCard

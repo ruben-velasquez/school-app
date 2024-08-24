@@ -1,26 +1,18 @@
 import TaskCard from "./task-card";
 import TaskForm from "./tasks-form";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { closeModal, openModal } from "@/utils/modal";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import { getlocalStorageItem } from "@/hooks/useLocalStorage";
 import {
-  setTasks,
   editTask,
   toggleTask,
   removeTask,
-  Task,
 } from "@/redux/features/tasksSlice";
 import { fillEditTaskForm, getEditTask } from "@/utils/tasks-actions";
 
 export default function Tasks() {
   const tasks = useAppSelector((state) => state.tasks.value);
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    const _tasks = getlocalStorageItem("tasks", [] as Task[]);
-    dispatch(setTasks(_tasks));
-  }, [dispatch]);
 
   const [selectedTask, setSelectedTask] = useState(0);
 
