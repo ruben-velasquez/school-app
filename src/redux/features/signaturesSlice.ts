@@ -30,6 +30,13 @@ export const signaturesSlice = createSlice({
     removeSignature: (state, action: PayloadAction<number>) => {
       state.value.splice(action.payload, 1);
     },
+    editSignature: (
+      state,
+      action: PayloadAction<{ index: number; signature: Signature }>,
+    ) => {
+      const { index, signature } = action.payload;
+      state.value[index] = signature;
+    },
     addGrade: (
       state,
       action: PayloadAction<{ index: number; grade: Grade }>,
@@ -57,6 +64,7 @@ export const {
   addGrade,
   removeGrade,
   selectSignature,
+  editSignature
 } = signaturesSlice.actions;
 
 export default signaturesSlice.reducer;

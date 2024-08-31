@@ -18,7 +18,7 @@ export default function SubjectsPage() {
         <header className="w-full">
           <h2 className="text-3xl font-headings tracking-wider">Subjects</h2>
         </header>
-        <Button onclick={() => openModal("signature-dialog")}>
+        <Button onclick={() => openModal("add-signature-dialog")}>
           <BiPlus /> Add signature
         </Button>
         <div className="grid grid-cols-3 gap-4">
@@ -28,7 +28,8 @@ export default function SubjectsPage() {
         </div>
       </main>
       <GradeForm id="grade-dialog" />
-      <SignatureForm id="signature-dialog" />
+      <SignatureForm type="add" id="add-signature-dialog" />
+      <SignatureForm type="edit" id="edit-signature-dialog" />
     </>
   );
 }
