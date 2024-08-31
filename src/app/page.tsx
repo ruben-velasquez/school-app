@@ -3,11 +3,7 @@ import Button from "@/components/button";
 import CourseSchedule from "@/components/course-schedule";
 import Sidebar from "@/components/sidebar";
 import TasksNumber from "@/components/tasks-number";
-import {
-  BiMedal,
-  BiSolidRightArrowAlt,
-  BiTask,
-} from "react-icons/bi";
+import { BiMedal, BiSolidRightArrowAlt, BiTask } from "react-icons/bi";
 
 export default function Home() {
   return (

@@ -37,7 +37,7 @@ export default function TaskForm({
           <p className="text-gray-300">Name*</p>
           <TextInput name="task-name" placeholder="My new Task" required />
           <p className="text-gray-300">Priority*</p>
-          <Selector value={"Normal"} />
+          <Selector value={"Normal"} options={["Normal", "Important"]} />
         </main>
 
         <footer className="flex items-center justify-end gap-2">

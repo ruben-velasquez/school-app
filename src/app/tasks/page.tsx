@@ -38,7 +38,7 @@ export default function TasksPage() {
           <div className="flex-grow">
             <TextInput required name="task-name" placeholder="My new task" />
           </div>
-          <Selector />
+          <Selector options={["Normal", "Important"]} />
           <Button isButton>
             <BiPlus /> Add task
           </Button>

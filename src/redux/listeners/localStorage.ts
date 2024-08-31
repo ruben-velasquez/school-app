@@ -7,10 +7,14 @@ function saveToLocalStorage(state: RootState) {
       // Tasks
       const serialisedTasks = JSON.stringify(state.tasks.value);
       localStorage.setItem("tasks", serialisedTasks);
-      
+
       // Notes
       const serialisedNotes = JSON.stringify(state.notes.value);
       localStorage.setItem("notes", serialisedNotes);
+
+      // Signatures
+      const serialisedSignatures = JSON.stringify(state.signatures.value);
+      localStorage.setItem("signatures", serialisedSignatures);
     }
   } catch (e) {
     console.warn(e);

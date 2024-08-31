@@ -13,8 +13,8 @@ export default function TasksCardSkeleton() {
         </div>
       </div>
       <div className="col-span-2 grid grid-cols-5 gap-4">
-          <div className="h-2 bg-gray-100/35 rounded col-span-2 animate-pulse"></div>
-          <div className="h-2 bg-gray-100/35 rounded col-span-1 animate-pulse"></div>
+        <div className="h-2 bg-gray-100/35 rounded col-span-2 animate-pulse"></div>
+        <div className="h-2 bg-gray-100/35 rounded col-span-1 animate-pulse"></div>
       </div>
       <div className="col-span-2 grid grid-cols-5">
         <div className="h-2 bg-gray-100/35 col-span-2 rounded animate-pulse"></div>

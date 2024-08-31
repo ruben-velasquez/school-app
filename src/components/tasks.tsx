@@ -3,18 +3,14 @@ import TaskForm from "./tasks-form";
 import { useState } from "react";
 import { closeModal, openModal } from "@/utils/modal";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import {
-  editTask,
-  toggleTask,
-  removeTask,
-} from "@/redux/features/tasksSlice";
+import { editTask, toggleTask, removeTask } from "@/redux/features/tasksSlice";
 import { fillEditTaskForm, getEditTask } from "@/utils/tasks-actions";
 import TasksSkeleton from "./tasks-skeleton";
 import { useLoading } from "@/hooks/useLoading";
 
 export default function Tasks() {
   const loading = useLoading();
-  
+
   const tasks = useAppSelector((state) => state.tasks.value);
   const dispatch = useAppDispatch();
 
@@ -53,7 +49,7 @@ export default function Tasks() {
       </header>
       <ul>
         {loading ? <TasksSkeleton /> : ""}
-        
+
         {tasks.map((task, index) => (
           <TaskCard
             task={task}
