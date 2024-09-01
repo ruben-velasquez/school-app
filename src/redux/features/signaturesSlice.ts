@@ -13,9 +13,10 @@ export type Signature = {
 type SignaturesState = {
   value: Signature[];
   selectedSignature: number;
+  selectedGrade: number;
 };
 
-const initialState: SignaturesState = { value: [], selectedSignature: 0 };
+const initialState: SignaturesState = { value: [], selectedSignature: 0, selectedGrade: 0 };
 
 export const signaturesSlice = createSlice({
   name: "signatures",
@@ -51,8 +52,22 @@ export const signaturesSlice = createSlice({
       const { signatureIndex, gradeIndex } = action.payload;
       state.value[signatureIndex].grades.splice(gradeIndex, 1);
     },
+    editGrade: (
+      state,
+      action: PayloadAction<{
+        signatureIndex: number;
+        gradeIndex: number;
+        grade: Grade;
+      }>,
+    ) => {
+      const { signatureIndex, gradeIndex, grade } = action.payload;
+      state.value[signatureIndex].grades[gradeIndex] = grade;
+    },
     selectSignature: (state, action: PayloadAction<number>) => {
       state.selectedSignature = action.payload;
+    },
+    selectGrade: (state, action: PayloadAction<number>) => {
+      state.selectedGrade = action.payload;
     },
   },
 });
@@ -64,7 +79,9 @@ export const {
   addGrade,
   removeGrade,
   selectSignature,
-  editSignature
+  editSignature,
+  editGrade,
+  selectGrade
 } = signaturesSlice.actions;
 
 export default signaturesSlice.reducer;

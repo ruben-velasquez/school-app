@@ -3,6 +3,8 @@ export const openModal = (id: string) => {
 
   if (!$modal) return;
 
+  closeModal();
+
   $modal.showModal();
 };
 

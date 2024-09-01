@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/components/button";
+import EditGradeForm from "@/components/edit-grade-form";
 import GradeForm from "@/components/grade-form";
 import Sidebar from "@/components/sidebar";
 import SignatureCard from "@/components/signature-card";
@@ -30,6 +31,7 @@ export default function SubjectsPage() {
       <GradeForm id="grade-dialog" />
       <SignatureForm type="add" id="add-signature-dialog" />
       <SignatureForm type="edit" id="edit-signature-dialog" />
+      <EditGradeForm id="edit-grade-dialog" />
     </>
   );
 }

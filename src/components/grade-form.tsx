@@ -50,7 +50,7 @@ export default function GradeForm({ onSubmit, id }: NoteFormProps) {
             Signature:{" "}
             <span className="text-gray-400">{selectedSignature.name}</span>
           </p>
-          <GradesList signature={selectedSignature} />
+          <GradesList signature={selectedSignature} editControls />
 
           <form onSubmit={formSubmitHandler} className="flex flex-col gap-2">
             <p className="text-gray-300">New grade</p>
