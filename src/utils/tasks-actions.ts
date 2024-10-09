@@ -1,4 +1,4 @@
-import { Task } from "@/context/tasks-context";
+import { Task } from "@/redux/features/tasksSlice";
 
 export const getEditTask = (id: number, tasks: Task[]) => {
   const taskNameInput = document.querySelector(
